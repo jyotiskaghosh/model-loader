@@ -2,7 +2,7 @@
 
 all: model_loading
 
-model_loading: model_loading.o model.o mesh.o dynamic_array.o
+model_loading: model_loading.o model.o mesh.o dynamic_array.o glad.o
 	gcc -o model_loading model_loading.o model.o mesh.o dynamic_array.o glad.o -lglfw -lm -ldl -lassimp
 
 model_loading.o: model_loading.c model.h
@@ -16,6 +16,9 @@ mesh.o: mesh.c mesh.h dynamic_array.h
 
 dynamic_array.o: dynamic_array.c dynamic_array.h
 	gcc -c dynamic_array.c
+	
+glad.o: glad.c
+	gcc -c glad.c
 
 clear:
-	rm model_loading.o model.o mesh.o dynamic_array.o model_loading
+	rm *.o model_loading
